@@ -22,12 +22,15 @@ function search_bill(){
   searchContent['bill_no']=bill_no_field.val();
   searchContent['card_no']=card_no_field.val();
   $.ajax(
-    {type: "POST",
-    url: "/search_bill",
+      {type: "POST",
+        url: "/search_bill.json",
     data: searchContent,
-    dataType: "application/json",
+    dataType: "json",
     success: function(result){
-      console.log(result[0]);
+      var result=result[0];
+      $('#bill_bill_no').val(result['bill_no']);
+      $('#bill_card_no').val(result['card_no']);
+      $('#bill_bill_amount').val(result['bill_amount']);
     }
-  });
+      });
 }
